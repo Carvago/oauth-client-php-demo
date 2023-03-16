@@ -11,7 +11,12 @@ OAUTH_CLIENT_ID='<my-client-id>' OAUTH_CLIENT_SECRET='<my-client-secret>' php -S
 
 Now access `localhost:8080` in your browser (the URL depends on what you run in the command, you can adapt it to your needs).
 
-You can use optional variable `OAUTH_AUTH_SERVER` to change auth server from default `https://api.stage.omnetic.dev`.
+You can use optional variable `OAUTH_AUTH_SERVER` to change auth server from default `https://api.dev.omnetic.dev`.
+
+You can use optional variable `OAUTH_CALLBACK_PATH` (defaults to `callback`) to change redirect_uri which is sent to authorization server:
+```
+$redirectUri = 'http://' . $_SERVER['HTTP_HOST'] . '/' . ($_ENV['CALLBACK_PATH'] ?? 'callback');
+```
 
 ## Requirements
 

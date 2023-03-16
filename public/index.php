@@ -3,8 +3,8 @@
 
     $clientId = $_ENV['OAUTH_CLIENT_ID'] ?? '';
     $clientSecret = $_ENV['OAUTH_CLIENT_SECRET'] ?? '';
-    $authServerUrl = $_ENV['OAUTH_AUTH_SERVER'] ?? 'https://api.stage.omnetic.dev';
-    $redirectUri = 'http://' . $_SERVER['HTTP_HOST'] . '/callback';
+    $authServerUrl = $_ENV['OAUTH_AUTH_SERVER'] ?? 'https://api.dev.omnetic.dev';
+    $redirectUri = 'http://' . $_SERVER['HTTP_HOST'] . '/' . ($_ENV['CALLBACK_PATH'] ?? 'callback');
     $state = bin2hex(random_bytes(10)); // random string
 
     if (!isset($_GET['state'])) {
