@@ -17,3 +17,7 @@ You can use optional variable `OAUTH_AUTH_SERVER` to change auth server from def
 
 - Requires PHP >= 8.0
 - cURL extension
+
+---
+
+<img width="500" alt="page" src="https://github.com/Carvago/oauth-client-php-demo/raw/main/docs/page.png">
