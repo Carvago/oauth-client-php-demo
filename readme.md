@@ -15,7 +15,8 @@ You can use optional variable `OAUTH_AUTH_SERVER` to change auth server from def
 
 You can use optional variable `OAUTH_CALLBACK_PATH` (defaults to `callback`) to change redirect_uri which is sent to authorization server:
 ```
-$redirectUri = 'http://' . $_SERVER['HTTP_HOST'] . '/' . ($_ENV['CALLBACK_PATH'] ?? 'callback');
+$callbackPath = $_ENV['OAUTH_CALLBACK_PATH'] ?? 'callback';
+$redirectUri = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $callbackPath;
 ```
 
 ## Requirements
