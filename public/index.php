@@ -93,7 +93,7 @@
             'Content-type: application/json',
         ]);
 
-        /** @var array{id: string, email: string, firstName: string, lastName: string, phoneNumber: array{countryCode: string, prefix: string, number: string}} $userInfoData */
+        /** @var array{id: string, email: string, firstName: string, lastName: string, phoneNumber: null|array{countryCode: string, prefix: string, number: string}} $userInfoData */
         $userInfoData = json_decode(curl_exec($ch), true);
 
         echo sprintf('<p><strong>Logged in as user:</strong> <pre>%s</pre></p>', print_r($userInfoData, true));
