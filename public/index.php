@@ -52,7 +52,7 @@
         if (isset($_GET['code'], $_GET['state'])) {
 
             // Check against man in the middle attack (optional but recommended)
-            if ($_GET['state'] !== $_SESSION['state']) {
+            if (isset($_SESSION['state']) && $_GET['state'] !== $_SESSION['state']) {
                 die('States do not match!!');
             }
 
