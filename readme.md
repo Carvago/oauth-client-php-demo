@@ -2,7 +2,7 @@
 
 ## Usage
 
-*Note: V2 supports only JSON request body. To switch to v1 which uses multipart/form-data request and different endpoints replace v2 with v1 in the start server command below.*
+*Note: V2 supports only JSON request body and properties are camelCase. To switch to v1 which uses multipart/form-data requests, properties are in snake_case and different endpoints replace v2 with v1 in the start server command below.*
 
 You will need to obtain client id + client secret from service provider.
 

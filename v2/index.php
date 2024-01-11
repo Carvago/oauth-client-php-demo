@@ -22,9 +22,9 @@ if (str_contains($_SERVER['REQUEST_URI'], '/logout')) {
 if (str_contains($_SERVER['REQUEST_URI'], '/refresh-token')) {
     if (isset($_SESSION['refresh_token'])) {
         $data = [
-            'client_id' => $clientId,
-            'client_secret' => $clientSecret,
-            'refresh_token' => $_SESSION['refresh_token'],
+            'clientId' => $clientId,
+            'clientSecret' => $clientSecret,
+            'refreshToken' => $_SESSION['refresh_token'],
         ];
 
         $ch = curl_init();
@@ -38,14 +38,14 @@ if (str_contains($_SERVER['REQUEST_URI'], '/refresh-token')) {
         ]);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data, JSON_THROW_ON_ERROR));
 
-        /** @var false|array{token_type: string, expires_in: int, access_token: string, refresh_token: string} $accessTokenData */
+        /** @var false|array{tokenType: string, expiresIn: int, accessToken: string, refreshToken: string} $accessTokenData */
         $accessTokenData = json_decode(curl_exec($ch), true, 512, JSON_THROW_ON_ERROR);
         $responseCode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 
         // User is now signed in - we have both refresh and access token
         if ($responseCode === 200 && $accessTokenData) {
-            $_SESSION['access_token'] = $accessTokenData['access_token'];
-            $_SESSION['refresh_token'] = $accessTokenData['refresh_token'];
+            $_SESSION['access_token'] = $accessTokenData['accessToken'];
+            $_SESSION['refresh_token'] = $accessTokenData['refreshToken'];
         }
 
         echo sprintf('<p><strong>Access token response:</strong> <pre>%s</pre></p>', print_r($accessTokenData, true));
@@ -63,9 +63,9 @@ if (str_contains($_SERVER['REQUEST_URI'], '/' . $callbackPath)) {
 
         $data = [
             'code' => $_GET['code'],
-            'client_id' => $clientId,
-            'client_secret' => $clientSecret,
-            'redirect_uri' => $redirectUri,
+            'clientId' => $clientId,
+            'clientSecret' => $clientSecret,
+            'redirectUri' => $redirectUri,
         ];
 
         $ch = curl_init();
@@ -79,14 +79,14 @@ if (str_contains($_SERVER['REQUEST_URI'], '/' . $callbackPath)) {
         ]);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data, JSON_THROW_ON_ERROR));
 
-        /** @var false|array{token_type: string, expires_in: int, access_token: string, refresh_token: string} $accessTokenData */
+        /** @var false|array{tokenType: string, expiresIn: int, accessToken: string, refreshToken: string} $accessTokenData */
         $accessTokenData = json_decode(curl_exec($ch), true, 512, JSON_THROW_ON_ERROR);
         $responseCode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 
         // User is now signed in - we have both refresh and access token
         if ($responseCode === 200 && $accessTokenData) {
-            $_SESSION['access_token'] = $accessTokenData['access_token'];
-            $_SESSION['refresh_token'] = $accessTokenData['refresh_token'];
+            $_SESSION['access_token'] = $accessTokenData['accessToken'];
+            $_SESSION['refresh_token'] = $accessTokenData['refreshToken'];
         }
 
         echo sprintf('<p><strong>Access token response:</strong> <pre>%s</pre></p>', print_r($accessTokenData, true));
