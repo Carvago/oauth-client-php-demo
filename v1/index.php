@@ -34,7 +34,7 @@
             ]);
 
             /** @var false|array{token_type: string, expires_in: int, access_token: string, refresh_token: string} $accessTokenData */
-            $accessTokenData = json_decode(curl_exec($ch), true);
+            $accessTokenData = json_decode(curl_exec($ch), true, 512, JSON_THROW_ON_ERROR);
             $responseCode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 
             // User is now signed in - we have both refresh and access token
@@ -70,7 +70,7 @@
             ]);
 
             /** @var false|array{token_type: string, expires_in: int, access_token: string, refresh_token: string} $accessTokenData */
-            $accessTokenData = json_decode(curl_exec($ch), true);
+            $accessTokenData = json_decode(curl_exec($ch), true, 512, JSON_THROW_ON_ERROR);
             $responseCode = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
 
             // User is now signed in - we have both refresh and access token
@@ -95,7 +95,7 @@
         ]);
 
         /** @var array{id: string, email: string, firstName: string, lastName: string, phoneNumber: null|array{countryCode: string, prefix: string, number: string}} $userInfoData */
-        $userInfoData = json_decode(curl_exec($ch), true);
+        $userInfoData = json_decode(curl_exec($ch), true, 512, JSON_THROW_ON_ERROR);
 
         echo sprintf('<p><strong>Logged in as user:</strong> <pre>%s</pre></p>', print_r($userInfoData, true));
     }
