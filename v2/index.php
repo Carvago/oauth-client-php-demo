@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$clientId = $_ENV['OAUTH_CLIENT_ID'] ?? '';
-$clientSecret = $_ENV['OAUTH_CLIENT_SECRET'] ?? '';
-$authServerUrl = $_ENV['OAUTH_AUTH_SERVER'] ?? 'https://api.dev.omnetic.dev';
-$callbackPath = $_ENV['OAUTH_CALLBACK_PATH'] ?? 'callback';
+$clientId = getenv('OAUTH_CLIENT_ID') ?: '';
+$clientSecret = getenv('OAUTH_CLIENT_SECRET') ?: '';
+$authServerUrl = getenv('OAUTH_AUTH_SERVER') ?: 'https://api.dev.omnetic.dev';
+$callbackPath = getenv('OAUTH_CALLBACK_PATH') ?: 'callback';
 $redirectUri = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $callbackPath;
 $state = bin2hex(random_bytes(10)); // random string
 
